@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Food Delivery App</title>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #F0BB78; /* Orange/Yellow tone for primary accents */
+            --secondary-color: #543A14; /* Brown/Earth tone for secondary elements */
+            --dark-color: #131010; /* Dark for text and backgrounds */
+            --light-color: #FFF0DC; /* Light/Creamy for subtle backgrounds */
+            --white-color: #FFF0DC; /* Using the creamy white for backgrounds */
+            --text-color: #131010; /* Standard text color */
+            --heading-color: #131010; /* Darker heading color */
+            --gradient-start: #543A14; /* Brown for gradients */
+            --gradient-end: #131010; /* Dark for gradients */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 25px;
+        }
+
+        h1, h2, h3 {
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        #hero-landing {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: var(--white-color);
+            min-height: 85vh; /* Slightly less than full height to show a peek of next section */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            padding: 40px 0; /* Adjusted padding */
+        }
+
+        #hero-landing h1 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: var(--white-color);
+            animation: fadeInDown 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        #hero-landing p {
+            font-size: 1.6rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+            font-weight: 300;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            justify-content: center;
+            animation: zoomIn 1s ease-out;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-decoration:none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--dark-color); /* Text color contrast */
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white-color);
+            border: 2px solid var(--white-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white-color);
+            color: var(--dark-color);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Features Section */
+        #features {
+            background-color: var(--white-color);
+            padding: 90px 0;
+        }
+
+        #features h2 {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--heading-color);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-item .icon {
+            font-size: 3.5rem; /* Placeholder for icon/emoji */
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            font-size: 1rem;
+            color: var(--secondary-color);
+        }
+
+        /* How It Works Section */
+        #how-it-works {
+            background-color: #FFF0DC; /* Using light color from new palette */
+            padding: 90px 0;
+        }
+
+        #how-it-works h2 {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--heading-color);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .step-item .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: var(--dark-color); /* Changed to dark for contrast */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-item h3 {
+            font-size: 1.6rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        .step-item p {
+            font-size: 1.05rem;
+            color: var(--secondary-color);
+        }
+
+        /* Call to Action Section */
+        #cta-bottom {
+            background: linear-gradient(to right, var(--gradient-end), var(--gradient-start));
+            color: var(--white-color);
+            padding: 80px 0;
+        }
+
+        #cta-bottom h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: var(--white-color);
+        }
+
+        #cta-bottom p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+
+        /* Footer */
+        .footer-landing {
+            background-color: var(--dark-color);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 35px 0;
+            font-size: 0.95rem;
+            margin-top: auto; /* Pushes footer to bottom */
+        }
+
+        .footer-landing p {
+            margin: 0;
+            letter-spacing: 0.3px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hero-landing h1 {
+                font-size: 3rem;
+            }
+
+            #hero-landing p {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .feature-grid, .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item, .step-item {
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .feature-item .icon {
+                font-size: 3rem;
+            }
+
+            .step-item .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #hero-landing h1 {
+                font-size: 2.5rem;
+            }
+
+            #hero-landing p {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .feature-item h3 {
+                font-size: 1.3rem;
+            }
+
+            .step-item h3 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section id="hero-landing">
+        <div class="container">
+            <h1>Delicious Food, Delivered Fast.</h1>
+            <p>Order from your favorite restaurants and get hot, fresh meals delivered right to your door.</p>
+            <div class="cta-buttons">
+                <a href="login.html" class="btn btn-primary">Order Now!</a>
+                <a href="login.html" class="btn btn-secondary">Login / Sign Up</a> <!-- Links to your login page -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="icon">&#128269;</span> <!-- Magnifying glass emoji -->
+                    <h3>Explore Local Flavors</h3>
+                    <p>Discover a wide variety of restaurants and cuisines in your area.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">&#128666;</span> <!-- Delivery truck emoji -->
+                    <h3>Fast & Reliable Delivery</h3>
+                    <p>Our dedicated delivery team ensures your food arrives hot and on time.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">&#128179;</span> <!-- Credit card emoji -->
+                    <h3>Easy & Secure Payments</h3>
+                    <p>Pay with ease using various secure payment options.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="icon">&#128226;</span> <!-- Megaphone emoji -->
+                    <h3>Track Your Order</h3>
+                    <p>Real-time updates from the restaurant to your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Meal</h3>
+                    <p>Browse menus from local restaurants and pick your favorites.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3>Place Your Order</h3>
+                    <p>Add items to your cart and complete your secure checkout.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3>Enjoy Your Food</h3>
+                    <p>Relax while we deliver your delicious meal right to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section (Bottom) -->
+    <section id="cta-bottom">
+        <div class="container">
+            <h2>Ready to Order?</h2>
+            <p>Join thousands of happy customers enjoying seamless food delivery.</p>
+            <a href="#" class="btn btn-primary">Start Ordering Now!</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-landing">
+        <div class="container">
+            <p>&copy; 2025 Your Food Delivery App. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

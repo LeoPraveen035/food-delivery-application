@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles for Login Page */
+        :root {
+            --primary-color: #F0BB78; /* Orange/Yellow tone for buttons/accents */
+            --secondary-color: #543A14; /* Brown/Earth tone for secondary elements */
+            --dark-color: #131010; /* Dark for general text and headings */
+            --light-color: #FFF0DC; /* Light/Creamy for input backgrounds and form itself */
+            --white-color: #FFF0DC; /* Using the creamy white for backgrounds */
+            --text-color: #131010; /* Standard text color */
+            --heading-color: #131010; /* Darker heading color */
+            --form-bg-color: var(--white-color); /* Form background using creamy white */
+            --border-color: rgba(84, 58, 20, 0.2); /* Subtle brown tint for borders */
+            --focus-shadow-color: rgba(240, 187, 120, 0.4); /* Transparent primary for focus */
+            --button-gradient-start: #543A14; /* Darker brown for button gradient start */
+            --button-gradient-end: #F0BB78; /* Lighter orange/yellow for button gradient end */
+            --page-gradient-start: #543A14; /* Brown for page background start */
+            --page-gradient-end: #131010; /* Dark for page background end */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(to right, var(--page-gradient-start), var(--page-gradient-end));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h2 {
+            font-size: 2.2rem; /* Consistent with register page */
+            margin-bottom: 30px;
+            font-weight: 700; /* Consistent with register page */
+            color: #F0BB78;
+            text-align: center;
+            position: relative;
+        }
+
+        /* h2::after { /* Underline effect for heading */
+           /* content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        } */
+
+        /* Login Form Container */
+        .login-form-container {
+           /*  background-color: var(--form-bg-color); */
+            padding: 45px; /* Consistent with register page */
+            border-radius: 10px;
+            max-width: 500px; /* Consistent with register page general width */
+            width: 90%; /* Responsive width */
+/*             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Consistent with register page */
+ 	        text-align: left;
+            animation: fadeIn 0.8s ease-out; /* Fade in animation */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-form-container .form-group {
+            margin-bottom: 20px; /* Consistent with register page */
+        }
+
+        .login-form-container label {
+            display: block;
+            margin-bottom: 8px; /* Consistent with register page */
+            color: #F0BB78;
+            font-weight: 500; /* Consistent with register page */
+            font-size: 1rem; /* Consistent with register page */
+        }
+
+        .login-form-container input[type="text"],
+        .login-form-container input[type="password"] {
+            width: 100%;
+            padding: 12px 15px; /* Consistent with register page */
+            border: 1px solid var(--border-color); /* Consistent with register page */
+            border-radius: 5px; /* Consistent with register page */
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem; /* Consistent with register page */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--light-color); /* Consistent with register page */
+            color: var(--text-color); /* Consistent with register page */
+        }
+
+        .login-form-container input[type="text"]:focus,
+        .login-form-container input[type="password"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--focus-shadow-color); /* Consistent with register page */
+            outline: none;
+        }
+
+        .login-form-container .btn-submit {
+            display: block;
+            width:100%;
+            padding: 16px; /* Consistent with register page */
+            background: linear-gradient(to right, var(--button-gradient-start), var(--button-gradient-end)); /* Gradient button from register page */
+            color: var(--white-color);
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2rem; /* Consistent with register page */
+            font-weight: 600; /* Consistent with register page */
+            cursor: pointer;
+            transition: all 0.3s ease; /* Adjusted for gradient */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Consistent with register page */
+            letter-spacing: 0.5px; /* Consistent with register page */
+            margin-top: 30px; /* Consistent with register page */
+        }
+
+        .login-form-container .btn-submit:hover {
+            background-position: 100% 0; /* Slide gradient effect */
+            transform: translateY(-2px); /* Consistent with register page */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Consistent with register page */
+            opacity: 0.95;
+        }
+
+        /* Optional: Link for Forgot Password/Sign Up */
+        .login-form-container .links {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color:white;
+        }
+
+        .login-form-container .links a {
+            color: #F0BB90;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .login-form-container .links a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .login-form-container {
+                padding: 35px;
+                max-width: 90%;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 25px;
+            }
+
+            .login-form-container label {
+                font-size: 1rem;
+            }
+
+            .login-form-container input[type="text"],
+            .login-form-container input[type="password"] {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .login-form-container .btn-submit {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+
+            .login-form-container .links {
+                margin-top: 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-form-container">
+        <h2>Welcome Back!</h2>
+        <form action="CallingLoginServlet" method="POST">
+            <div class="form-group">
+                <label for="username">Email or Username</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your email or username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <button type="submit" class="btn-submit">Log In</button>
+            <div class="links">
+                <a href="#">Forgot Password?</a> | <a href="register.html">Sign Up</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
